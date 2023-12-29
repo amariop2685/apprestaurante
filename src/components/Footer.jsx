@@ -1,49 +1,73 @@
+
+import { useState } from 'react'
+import {db} from '../config/database';
+import { collection, addDoc } from 'firebase/firestore';
+
+
 function footer({titulo=""}) {
+
+const [newsletter, setNewsletter] = useState({
+  emailnoticias:""
+});
+
+const handleInputChange = (event) => {
+  setNewsletter({
+    ...newsletter,
+    [event.target.name]: event.target.value
+  });
+}
+
+const suscribete = async (event) => {
+  event.preventDefault();
+  await addDoc(collection(db, "noticias"), newsletter);
+}
+
+
     return ( 
         <div className="container">
   <footer className="py-5">
     <div className="row">
       <div className="col-6 col-md-2 mb-3">
-        <h5>Section</h5>
+        <h5>Menú</h5>
         <ul className="nav flex-column">
-          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Home</a></li>
-          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Features</a></li>
-          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Pricing</a></li>
-          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">FAQs</a></li>
-          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">About</a></li>
+          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Pizza Aceituna</a></li>
+          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Pizza Nonna</a></li>
+          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Pizza Margarita</a></li>
+          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Pizza Vegetariana</a></li>
+          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Pizza Toda Carne</a></li>
         </ul>
       </div>
 
       <div className="col-6 col-md-2 mb-3">
-        <h5>Section</h5>
+        <h5>Sabores</h5>
         <ul className="nav flex-column">
-          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Home</a></li>
-          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Features</a></li>
-          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Pricing</a></li>
-          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">FAQs</a></li>
-          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">About</a></li>
+          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Quesos</a></li>
+          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Salsas</a></li>
+          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Vegetales</a></li>
+          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Carnes</a></li>
+          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Masas</a></li>
         </ul>
       </div>
 
       <div className="col-6 col-md-2 mb-3">
-        <h5>Section</h5>
+        <h5>Acerca</h5>
         <ul className="nav flex-column">
-          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Home</a></li>
-          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Features</a></li>
-          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Pricing</a></li>
-          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">FAQs</a></li>
-          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">About</a></li>
+          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Quienes Somos</a></li>
+          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Nuestras Sedes</a></li>
+          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Selección</a></li>
+          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Socios</a></li>
+          <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Inversión</a></li>
         </ul>
       </div>
 
       <div className="col-md-5 offset-md-1 mb-3">
-        <form>
+        <form onSubmit={suscribete}>
           <h5>{titulo}</h5>
           <p>Resumen mensual de nuestras sabores y novedades.</p>
           <div className="d-flex flex-column flex-sm-row w-100 gap-2">
-            <label htmlFor="newsletter1" className="visually-hidden">Email address</label>
-            <input id="newsletter1" type="text" className="form-control" placeholder="Email" control-id="ControlID-1"/>
-            <button className="btn btn-danger" type="button" control-id="ControlID-2">Subscríbete</button>
+            <label className="visually-hidden">Email address</label>
+            <input type="email" className="form-control" name="emailnoticias" onChange={handleInputChange} placeholder="Email"/>
+            <button className="btn btn-danger">Suscribete</button>
           </div>
         </form>
       </div>
@@ -59,7 +83,7 @@ function footer({titulo=""}) {
     </div>
   </footer>
 </div>
-     );
+    );
 }
 
 export default footer;

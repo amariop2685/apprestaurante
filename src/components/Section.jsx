@@ -28,19 +28,23 @@ function Section() {
       
     return (
         <div className="row">
-            <div className="col-md-6" style={{ background: "#f9fafb" }}>
+            
+            <div className="col-md-5" style={{ background: "#f9fafb" }}>
                 <br />
                 <h3>Reserva con Nosotros</h3>
                 <br />
                 <p>A partir de tú contacto, nos comunicaremos contigo para verificar las fechas y disponibilidad de horarios.</p>
-                <a><img width="25" height="25" src="https://img.icons8.com/sf-ultralight/25/home-page.png" alt="home-page" />Avenida Libertador O'Higgins 1302, Oficina 70, Comuna Santiago</a>
+                <br />
+                <a><img width="25" height="25" src="https://img.icons8.com/sf-ultralight/25/home-page.png" alt="home-page" />Avenida Libertador O'Higgins 1302, Oficina 70, Comuna Santiago.</a>
+                <br />
                 <br />
                 <a><img width="25" height="25" src="https://img.icons8.com/sf-ultralight/25/cell-phone.png" alt="cell-phone" />+(56)9595669686</a>
                 <br />
+                <br />
                 <a><img width="25" height="25" src="https://img.icons8.com/sf-ultralight/25/new-post.png" alt="new-post" />contacto@pizzas.cl</a>
             </div>
-            <div className="col-md-6">
 
+            <div className="col-md-7">
 
                 <form onSubmit={reservar}>
                     <div className="mb-3">
