@@ -1,9 +1,13 @@
 .subtitulo{
     padding-top: 2em;
-    text-align: center;
 }                            
-.parrafoPrincipal{
-    padding: 5em;
+.parrafo{
+    padding-top: 1em;
+    padding-bottom: 0.2em;
+}
+.center{
     text-align: center;
-
+}
+.justify{
+    text-align: justify;
 }
